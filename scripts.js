@@ -50,5 +50,10 @@ form.onsubmit = (event) => {
 }
 
 function expenseAdd(newExpense) {
+  // Cria o elemento para adicionar o item (li) na lista (ul).
+  const expenseItem = document.createElement("li")
+  expenseItem.classList.add("expense")
 
+  // Adiciona o item na lista.
+  expenseList.append(expenseItem)
 }
