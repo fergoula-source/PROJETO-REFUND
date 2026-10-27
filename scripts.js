@@ -135,8 +135,18 @@ function updateTotals() {
       total += valueFormatted
     }
 
-    // Exibe o total.
-    expenseTotal.textContent = total
+    // Cria o elemento para o símbolo da moeda.
+    const symbolBRL = document.createElement("small")
+    symbolBRL.textContent = "R$"
+
+    // Formata o valor total e remove o símbolo que será exibido pelo elemento small.
+    total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+
+    // Limpa o conteúdo do total.
+    expenseTotal.innerHTML = ""
+
+    // Adiciona o símbolo da moeda e o valor total formatado.
+    expenseTotal.append(symbolBRL, total)
   } catch (error) {
     console.log(error)
     alert("Não foi possível atualizar os valores.")
