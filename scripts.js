@@ -119,8 +119,24 @@ function updateTotals() {
     // Percorre cada item (li) da lista (ul).
     for (let item = 0; item < items.length; item++) {
       const itemAmount = items[item].querySelector(".expense-amount")
-      console.log(itemAmount)
+
+      // Remove caracteres não numéricos e substitui vírgula pelo ponto.
+      let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
+
+      // Converte o valor para float.
+      const valueFormatted = parseFloat(value)
+
+      // Verifica se é um número válido.
+      if (isNaN(valueFormatted)) {
+        return alert("Não foi possível calcular o total. O valor não parece ser um número.")
+      }
+
+      // Incrementa o valor total.
+      total += valueFormatted
     }
+
+    // Exibe o total.
+    expenseTotal.textContent = total
   } catch (error) {
     console.log(error)
     alert("Não foi possível atualizar os valores.")
